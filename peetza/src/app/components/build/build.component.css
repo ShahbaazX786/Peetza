@@ -1,0 +1,15 @@
+.heading{
+  text-align: center;
+  margin: 2% 0;
+}
+
+
+.ingredient-img{
+  width: 100px;
+  height: 100px;
+}
+
+.table{
+  align-items: center;
+  text-align: left;
+}

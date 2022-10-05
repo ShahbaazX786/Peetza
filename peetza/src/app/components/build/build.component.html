@@ -1,1 +1,28 @@
-<p>build works!</p>
+<div class="container">
+  <div class="heading">
+    <h4>Pizzeria Now gives you options to build your own pizza by choosing from our wide range of topping and ingredient choices
+    </h4>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Item</th >
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Customize</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of ingredients">
+        <th><img [src]=item.image alt="img" class="ingredient-img"></th>
+        <td>{{item.tname}}</td>
+        <td>{{item.price | currency:'USD'}}</td>
+        <td><input type="checkbox" class="addtxt" [(ngModel)]="" (change)="updateTotal($event)"> Add</td>
+      </tr>
+    </tbody>
+      <tfoot>
+        <td><h1>Total cost: is {{total}}</h1></td>
+      </tfoot>
+  </table>
+</div>
