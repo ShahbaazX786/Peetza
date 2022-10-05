@@ -1,0 +1,36 @@
+.customnav{
+  background-color: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+.navtxt{
+  background-color: orange;
+  color: black;
+  font-size: small;
+}
+
+.whitetxt{
+  color: white;
+}
+
+.navbar-brand{
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  font-family: "montserrat",sans-serif;
+}
+
+.main-logo{
+  width: 5%;
+  margin-right:2%;
+}
+
+li:hover{
+  background-color: orange;
+  transition: all 0.2s ease-in;
+}
+
+.svg{
+  padding-bottom: 2px;
+}
