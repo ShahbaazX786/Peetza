@@ -1,36 +1,22 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
+const mongoose = require('./database/mongoose');
+const cors = require('cors');//useful while working with many ports in localhost
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.json()); // this is a middleware which is similar to body-Parser(a library which helps us to work with JSON data in express) 
+// And experss integreated this library into the express itself as it was being used too much/frequent thereby reducing one dependency.
 
-const URI = "mongodb://127.0.0.1:27017/Peetza";
+app.use(cors());
+//CORS cross origin request secrutity.
+// what happens here is that whenever a request is being made from other port except 3000 to the express then it will not authorize the request considering it as unsafe. so it becomes difficult to work with different ports in same localhost environment.
+// so we need to use the library called as cors which bypasses this.
 
-mongoose.connect(URI,function(err){
-    if(err){
-        console.error(err);
-    }
-    else{
-        console.log("connected to the database successfully bro!");
-    }
-});
 
-const pizzaSchema = new mongoose.Schema({
-  id:String,
-  type:String,
-  name:String,
-  price:Number,
-  image:String,
-  description:String,
-  ingredients:Object,
-  toppings:Object
-});
 
-const Pizza = new mongoose.model('pizza',pizzaSchema);
+
+
 
 app.get('/build',function(req,res){
   Pizza.find({},function(err,found){
