@@ -27,9 +27,39 @@ app.get('/build',function(req,res){
   Ingredient.find({})
   .then(ingredients => res.send(ingredients))
   .catch((err)=>console.log(err));
-})
+});
+
+app.get('/build/:id',function(req,res){
+  Ingredient.findOne({_id:req.params.id})
+  .then(ingredient => res.send(ingredient))
+  .catch((err)=>console.log(err));
+});
 
 
+//this is working fine in postman but you gotta always create a form to make a post request via html(view) remember that.
+app.post('/ingredients',function(req,res){
+  new Ingredient({
+    'id':req.body.id,
+    'tname':req.body.tname,
+    'price':req.body.price,
+    'image':req.body.image
+  })
+  .save()
+  .then((ingredient)=>res.send(ingredient))
+  .catch((error)=>console.log(error));
+});
+
+app.patch('/ingredients/:id',function(req,res){
+  Ingredient.findByIdAndUpdate({'_id':req.params.id}, {$set:req.body})
+  .then((ingredient)=>{res.send(ingredient)})
+  .catch((error)=>{console.log(error)});
+});
+
+app.delete('/ingredients/:id',function(req,res){
+  Ingredient.findByIdAndDelete(req.params.id)
+  .then((ingredient)=>{res.send(ingredient)})
+  .catch((error)=>{console.log(error)});
+});
 
 
 app.listen(PORT,function(){
