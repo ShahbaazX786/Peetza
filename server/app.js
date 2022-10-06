@@ -19,6 +19,13 @@ mongoose.connect(URI,function(err){
     }
 });
 
+
+app.get('/ingredients')
+
+
+
+
+
 app.listen(PORT,function(){
     console.log(`server started at port ${PORT} bro`);
 });
