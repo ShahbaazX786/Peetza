@@ -19,8 +19,32 @@ mongoose.connect(URI,function(err){
     }
 });
 
+const pizzaSchema = new mongoose.Schema({
+  id:String,
+  type:String,
+  name:String,
+  price:Number,
+  image:String,
+  description:String,
+  ingredients:Object,
+  toppings:Object
+});
 
-app.get('/ingredients')
+const Pizza = new mongoose.model('pizza',pizzaSchema);
+
+app.get('/build',function(req,res){
+  Pizza.find({},function(err,found){
+    if(found.length === 0){
+      console.log('There is no data available in the database');
+    }
+    else if(found){
+      console.log('Data found in the database',found);
+    }
+    else{
+      console.log(err);
+    }
+  });
+});
 
 
 
