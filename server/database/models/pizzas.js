@@ -6,8 +6,8 @@ const PizzaSchema = new mongoose.Schema({
     price:Number,
     image:String,
     description:String,
-    ingredients:[array],
-    topping:[array]
+    ingredients:Object,
+    topping:Object
 });
 
 const Pizza = mongoose.model('Pizza',PizzaSchema);

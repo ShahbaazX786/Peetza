@@ -15,23 +15,19 @@ app.use(cors());
 
 
 
+// importing models here
+const Pizza = require('./database/models/pizzas');
+const Ingredient = require('./database/models/ingredients');
 
 
+
+// defining the express server routes here [the requests we make to the express server at port 3000 and then it will give us the data by fetching data from the database. using the mongoose library].
 
 app.get('/build',function(req,res){
-  Pizza.find({},function(err,found){
-    if(found.length === 0){
-      console.log('There is no data available in the database');
-    }
-    else if(found){
-      console.log('Data found in the database',found);
-    }
-    else{
-      console.log(err);
-    }
-  });
-});
-
+  Ingredient.find({})
+  .then(ingredients => res.send(ingredients))
+  .catch((err)=>console.log(err));
+})
 
 
 
