@@ -12,7 +12,7 @@ export class BuildComponent implements OnInit {
   ingredients:Ingredient[] = [];
   constructor(private ingredientService:IngredientService) {}
 
-  dataarray:any=[];
+  dataarray:Ingredient[]=[];
 
   ngOnInit(): void {
     this.getIngredientsList();
@@ -22,7 +22,7 @@ export class BuildComponent implements OnInit {
     this.ingredientService.getIngredients().subscribe((res)=>{
       this.ingredientService.ingredientsarray = res as Ingredient[];
       this.dataarray=this.ingredientService.ingredientsarray;
-    })
+    });
   }
 
 }

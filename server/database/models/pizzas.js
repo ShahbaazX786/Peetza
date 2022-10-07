@@ -5,6 +5,7 @@ const PizzaSchema = new mongoose.Schema({
     id:Number,
     type:String,
     price:Number,
+    name:String,
     image:String,
     description:String,
     ingredients:Object,
