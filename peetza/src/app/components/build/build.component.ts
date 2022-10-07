@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IngredientsService } from 'src/app/services/ingredients.service';
+import { IngredientService } from 'src/app/services/ingredients.service';
 import Ingredient  from 'src/app/services/models/ingredient';
 
 @Component({
@@ -10,12 +10,19 @@ import Ingredient  from 'src/app/services/models/ingredient';
 
 export class BuildComponent implements OnInit {
   ingredients:Ingredient[] = [];
-  constructor(private ingredientService:IngredientsService) {}
+  constructor(private ingredientService:IngredientService) {}
+
+  dataarray:any=[];
 
   ngOnInit(): void {
-    this.ingredientService.getingredients()
-    .subscribe((res)=>this.ingredients.push(this.ingredients[]));
-    console.log(this.ingredients);
+    this.getIngredientsList();
+  }
+
+  getIngredientsList(){
+    this.ingredientService.getIngredients().subscribe((res)=>{
+      this.ingredientService.ingredientsarray = res as Ingredient[];
+      this.dataarray=this.ingredientService.ingredientsarray;
+    })
   }
 
 }

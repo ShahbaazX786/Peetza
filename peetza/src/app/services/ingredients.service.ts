@@ -1,27 +1,20 @@
 import { Injectable } from '@angular/core';
-import { WebService } from './web.service';
+import { HttpClient } from '@angular/common/http';
+
+import Ingredient  from 'src/app/services/models/ingredient';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IngredientsService {
+export class IngredientService {
 
-  constructor(private webService:WebService) { }
+  ingredientsarray: Ingredient[]=[];
+  readonly URL='http://localhost:3000/ingredients';
 
-  getingredients(){
-    return this.webService.get('/build');
+  constructor(private http:HttpClient) { }
+
+  getIngredients(){
+    return this.http.get(this.URL)
   }
-
-  // createingredient(_id:String, id: Number, tname: String, price: Number,image: String){
-  //   return this.web.post('/ingredients',{id,tname,price,image});
-  // }
-
-  // updateingredient(_id:String, id: Number, tname: String, price: Number,image: String){
-  //   return this.web.patch('/ingredients',{id,tname,price,image});
-  // }
-
-  // deleteingredient(_id: string){
-  //   return this.web.delete('/ingredients');
-  // }
 
 }
