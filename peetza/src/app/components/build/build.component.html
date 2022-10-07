@@ -14,10 +14,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th><img alt="img" class="ingredient-img"></th>
-        <td>one</td>
-        <td>two</td>
+      <tr *ngFor="let item of ingredients">
+        <th><img [src]=item.image alt="img" class="ingredient-img"></th>
+        <td>{{item.tname}}</td>
+        <td>{{item.price}}</td>
         <td><input type="checkbox" class="addtxt"> Add</td>
       </tr>
     </tbody>
